@@ -16,7 +16,8 @@ string c2to10(string num){
 }
 
 string c10to2(string num){
-    
+    string ansr;
+
     int num_aux = 0;
     for(int i = num.size()-1; i >= 0; i--){        
         num_aux += (int)pow(10.0, num.size()-1-i);
@@ -28,12 +29,14 @@ string c10to2(string num){
 }
 
 string c10to16(string num){
-        
+    string ansr;
+
     return ansr;
 }
 
 string c16to10(string num){
-        
+    string ansr;
+
     return ansr;
 }
 
