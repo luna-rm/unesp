@@ -23,24 +23,24 @@ typedef struct musica {
 
 void ajuda(){
     FILE * help = fopen("help.txt", "rt");
-    char Linha[100];
-    char *result;
-    int i;
-    
-    if (help == NULL)  
-  {
-     printf("Problemas na abertura do arquivo\n");
-     return;
-  }
-  i = 1;
-  while (!feof(help))
-  {
-      result = fgets(Linha, 100, help);  
-      if (result) 
-	  printf("Linha %d : %s",i,Linha);
-      i++;
-  }
+    char caracter;
+    system("cls");
+    while (!feof(help)) {
+    caracter = getc(help);
+    printf ("%c",caracter);
+    }
+    printf("\n\n\nPressione qualquer tecla para voltar...");
+    getch();
+    return 0;
   fclose(help);
+}
+
+void sair(){
+    
+    excluir();
+    exit(1);
+    
+    
 }
 
 
@@ -67,16 +67,16 @@ void menu(){
     gotoxy(3,3);
     printf("  Alterar arquivo");
     gotoxy(3,4);
-    printf("  Apagar musica (logica)");
-    gotoxy(3,5); 
-    printf("  Excluir musica (fisica)");
-    gotoxy(3,6);
+    printf("  Apagar musica");
+    gotoxy(3,5);
     printf("  Consultar arquivo");
-    gotoxy(3,7);
+    gotoxy(3,6);
     printf("  Ver todas as musicas cadastradas");
 
 
-    printf("\n\n     (Aperte F11 para ajuda)");
+    printf("\n\n     (Aperte F1 para ajuda)");
+    printf("\n\n     (Aperte ESC para sair)");
+
 }
 
 int setinha(){
@@ -105,14 +105,14 @@ int setinha(){
                 } else {
                     gotoxy(1,aux);
                     printf("  ");
-                    aux=7;
+                    aux=6;
                     gotoxy(1,aux);
                     printf("->");
                 }
                 break;
 
             case 80:
-                if(aux!=7) {
+                if(aux!=6) {
                     gotoxy(1,aux);
                     printf("  ");
                     aux++;
@@ -128,15 +128,20 @@ int setinha(){
                 break;
 
             case 13:
-                if(aux>=2 && aux<=7) {
+                if(aux>=2 && aux<=6) {
                     system("cls");
                     gotoxy(0,0);
                 }
                 break;
+            
+            case 27:
+                system("cls");
+                sair();
+                break;
 
             
         }
-    } while(seta!=27 && seta!=13);
+    } while(seta!=13);
 
     return aux;
 }
@@ -356,22 +361,20 @@ void excluir(){
     fflush(stdin);
     struct musica music;
 
-    FILE *arquivo = fopen("arq.dat", "rw" );
+    FILE *arquivo = fopen("arq.dat", "ab" );
     FILE *temp = fopen("aux.dat", "w" );
-    char nome[30];
-
-    printf("Nome da musica que deseja excluir: ");
-    gets(nome);
     
     while(fread(&music, sizeof(music), 1, arquivo)){
-        if(!strcmp(nome, music.nome)){
+        if(!music.status==FALSE){
             fwrite(&music, sizeof(music), 1, temp);
         }
     }
     fclose(temp);
+    fclose(arquivo);
     remove("arq.dat");
-    rename("aux.txt", "arq.txt");
-    final(arquivo);
+    rename("aux.dat", "arq.dat");
+    
+    
 }
 
 void apagar_musica(){
@@ -509,14 +512,12 @@ int main() {
             apagar_musica();
         }
         else if(what == 5) { 
-            excluir();
-        }
-        else if(what == 6) { 
             consultar();
         }
-        else if(what == 7) { 
+        else if(what == 6) { 
             ver_todas();
         }
+
     }
 
     return 0;
