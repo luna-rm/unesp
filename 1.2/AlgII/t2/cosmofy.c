@@ -25,24 +25,23 @@ void ajuda(){
     FILE * help = fopen("help.txt", "rt");
     char caracter;
     system("cls");
+    
     while (!feof(help)) {
-    caracter = getc(help);
-    printf ("%c",caracter);
+        caracter = getc(help);
+        printf ("%c",caracter);
     }
-    printf("\n\n\nPressione qualquer tecla para voltar...");
+    
+    printf("\n\nPressione qualquer tecla para voltar...");
     getch();
-    return 0;
-  fclose(help);
+
+    fclose(help);
+    return;
 }
 
 void sair(){
-    
     excluir();
-    exit(1);
-    
-    
+    exit(1);   
 }
-
 
 void final(FILE *arquivo){
     printf("\n\nPressione qualquer tecla para voltar ao menu");
@@ -269,14 +268,17 @@ void ver_todas(){
         system("cls");
         printf("Nenhuma musica cadastrada ate o momento :(\n");
         printf("\nAperte C para cadastrar uma musica ou ENTER para voltar ao menu\n\n");
+        
         opp = getch();
         system("cls");
+        
         if(opp=='C' || opp=='c'){
             cadastra();
-        }
-        else
+        } else {
             system("cls");
-            return;
+        }
+        
+        return;
     }
 
     final(arquivo);
@@ -371,10 +373,9 @@ void excluir(){
     }
     fclose(temp);
     fclose(arquivo);
+
     remove("arq.dat");
     rename("aux.dat", "arq.dat");
-    
-    
 }
 
 void apagar_musica(){

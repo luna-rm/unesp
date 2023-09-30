@@ -6,6 +6,7 @@
 #include <windows.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #define HELP 59
 #define UP 72
@@ -95,7 +96,7 @@ void start(){
     press_any();
 }
 
-void go(int where){
+void go(int where, char old_buffer[1024]){
     system("cls");
 
     SYSTEMTIME st,lt;
@@ -116,10 +117,27 @@ void go(int where){
         exit(1);
     }
 
+    char buffer[1024];
+    if(_getcwd(buffer, 1024) == NULL){
+        exit(1);
+    }
+
+    rand_sleep(100, 200);
+    printf("diretorio atual: ");
+    rand_sleep(50, 100);
+    printf("%s\n\n", buffer);
+    rand_sleep(50, 100);
+
+    buffer[0] = tolower(buffer[0]);
+
+    if(strcmp(buffer, old_buffer)){
+        where = 0;
+    }
+
     int pos = 0;
     char file[30];
     while ((dir = readdir(d)) != NULL) {
-        rand_sleep(50, 75);
+        rand_sleep(25, 50);
 
         if(where == pos){
             printf(" >  ");
@@ -149,21 +167,46 @@ void go(int where){
             where = 0;
         }
     } else if(aux == 4){
-        where = 0;
         chdir("..");
     } else if(aux == 5){
-        char command[60] = "cd ./";
+        char command[1486];
+        strcpy(command, buffer);
+        strcat(command, "\\");
         strcat(command, file);
-        chdir(command);  
+        _chdir(command);
     } else if(aux == 6){
-           
-    } else if(aux == 7){
-        where++;
-        if(where > pos){
-            where = 0;
+        printf("\n\n\n  # qual o novo nome da pasta: ");
+        char name[30];
+        gets(name);
+        for(unsigned int i = 0; i < sizeof(name); i++){
+            if(name[i] == ' '){
+                name[i] = '_';
+            }
         }
+        
+        char command_old[1486];
+        strcpy(command_old, buffer);
+        strcat(command_old, "\\");
+        strcat(command_old, file);
+        
+        char command_new[1486];
+        strcpy(command_new, buffer);
+        strcat(command_new, "\\");
+        strcat(command_new, name);
+        
+        if(rename(command_old, command_new) != 0){
+            printf("a");
+        } 
+    } else if(aux == 7){
+        char command[1486];
+        strcpy(command, buffer);
+        strcat(command, "\\");
+        strcat(command, file);
+        if(rmdir(command) != 0){
+            remove(file);
+        }     
     } else if(aux == 8){
-        printf("\n\n\n\n  > qual o nome da pasta: ");
+        printf("\n\n\n  # qual o nome da pasta: ");
         char name[30];
         gets(name);
         for(unsigned int i = 0; i < sizeof(name); i++){
@@ -186,10 +229,8 @@ void go(int where){
         }
     }
 
-
-
     if(aux != 0){
-        go(where);
+        go(where, buffer);
     }
 }
 
@@ -197,7 +238,7 @@ int main() {
     srand(time(NULL));
 
     start();
-    go(0);
+    go(0, "queijo");
 
     return 0;
 }
