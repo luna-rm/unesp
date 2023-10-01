@@ -36,7 +36,7 @@ int press_key(){
     if(key == 0){
         key = getch();
         if(key == HELP){
-            return 0;
+            return 1;
         }
     } else if(key == 224){
         key = getch();
@@ -58,12 +58,65 @@ int press_key(){
     } else if(key == H){
         return 9;
     } else if(key == ESC){
-        return 1;
+        return 0;
     }
 
     return -1;
-
 }
+
+void end(){
+    system("cls");
+    printf("Obrigada por usar o programa!!\n\n");
+    rand_sleep(200, 400);
+    printf("Feito por:\n");
+    rand_sleep(200, 400);
+    printf("- Bruno Ramalho Nascimento\n");
+    rand_sleep(50, 100);
+    printf("- Camila Cristina Silva\n");
+    rand_sleep(50, 100);
+    if(rand()%14 == 4){
+        printf("- Luna Ricieri Marchi\n");
+        rand_sleep(400, 600);
+        system("cls");
+        rand_sleep(50, 100);
+        printf("Obrigada por usar o programa!!\n");
+        printf("Feito por:\n");
+        printf("- Bruno Ramalho Nascimento\n");
+        printf("- Camila Cristina Silva\n");
+        rand_sleep(50, 100);
+        printf("- Pedro Ricieri Marchi\n");
+    } else {
+        printf("- Pedro Ricieri Marchi\n");
+    }
+    
+    rand_sleep(500, 1000);
+    exit(1);   
+} 
+
+void f_help(){
+    FILE * arquivo = fopen("help_exp.txt", "rt");
+    system("cls");
+    
+    while(!feof(arquivo)) {
+        char caracter = getc(arquivo);
+        if((caracter >= 65 && caracter <= 90) || (caracter >= 97 && caracter <= 122)){
+            caracter += 4;
+            if(caracter > 90 && caracter < 97){
+                int aux = caracter - 91;
+                caracter = 65 + aux;
+            } else if(caracter > 122){
+                int aux = caracter - 123;
+                caracter = 97 + aux;
+            }
+        }
+        printf ("%c",caracter);
+    }
+
+    printf("\n");    
+    fclose(arquivo);
+    press_any();
+}
+
 
 void start(){
     printf("--explorer-2.0--\n\n"); 
@@ -102,7 +155,6 @@ void go(int where, char old_buffer[1024]){
     SYSTEMTIME st,lt;
 
     GetSystemTime(&st);
-    //SetLocalTime(&st);
     
     GetLocalTime(&lt);
 
@@ -148,8 +200,6 @@ void go(int where, char old_buffer[1024]){
         printf("%s\n", dir->d_name);
         pos++;
     } 
-
-    //printf("\n\n\n%s", file);
 
     int aux = -1;
     while(aux == -1){
@@ -218,20 +268,55 @@ void go(int where, char old_buffer[1024]){
         strcat(command, name);
         system(command);        
     } else if(aux == 9){
-        where++;
-        if(where > pos){
-            where = 0;
+        system("cls");
+        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
+        printf("\n\n\n  # qual a nova hora: ");
+        while(!scanf("%d", st.wHour)){
+            printf("\nhora invalida! tente novamente: ");
         }
-    } else if(aux == 3){
-        where++;
-        if(where > pos){
-            where = 0;
+      
+        system("cls");
+        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);      
+        printf("\n\n\n  # qual o novo min: ");
+        while(!scanf("%d", st.wMinute)){
+            printf("\nhora invalida! tente novamente: ");
         }
-    }
 
-    if(aux != 0){
-        go(where, buffer);
+        system("cls");
+        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
+        printf("\n\n\n  # qual o novo seg: ");
+        while(!scanf("%d", st.wSecond)){
+            printf("\nhora invalida! tente novamente: ");
+        }
+
+        system("cls");
+        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
+        printf("\n\n\n  # qual o novo dia: ");
+        while(!scanf("%d", st.wDay)){
+            printf("\nhora invalida! tente novamente: ");
+        }
+
+        system("cls");
+        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
+        printf("\n\n\n  # qual o novo mes: ");
+        while(!scanf("%d", st.wMonth)){
+            printf("\nhora invalida! tente novamente: ");
+        }
+
+        system("cls");
+        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
+        printf("\n\n\n  # qual o novo ano: ");
+        while(!scanf("%d", st.wYear)){
+            printf("\nhora invalida! tente novamente: ");
+        }
+
+        SetLocalTime(&st);
+    } else if(aux == 1){
+        f_help();
+    } else if(aux == 0){
+        end();
     }
+    go(where, buffer);
 }
 
 int main() {

@@ -1,10 +1,11 @@
-#include<stdio.h>
-#include<windows.h>  
-#include<conio.h>
-#include<math.h>
-#include<stdlib.h>
-#include<string.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <windows.h>  
+#include <conio.h>
+#include <time.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 typedef struct data {
     int dia;
@@ -21,27 +22,6 @@ typedef struct musica {
     struct data lancamento;
 } var_para_tirar_erro_2;
 
-void ajuda(){
-    FILE * help = fopen("help.txt", "rt");
-    char caracter;
-    system("cls");
-    
-    while (!feof(help)) {
-        caracter = getc(help);
-        printf ("%c",caracter);
-    }
-    
-    printf("\n\nPressione qualquer tecla para voltar...");
-    getch();
-
-    fclose(help);
-    return;
-}
-
-void sair(){
-    excluir();
-    exit(1);   
-}
 
 void final(FILE *arquivo){
     printf("\n\nPressione qualquer tecla para voltar ao menu");
@@ -58,6 +38,77 @@ void gotoxy(int x, int y) {
 void cursor(int aux) {
     CONSOLE_CURSOR_INFO cursor = {1, aux};
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor);
+} 
+
+void sair(){
+    srand(time(NULL));
+    system("cls");
+    printf("Obrigada por usar o programa!!\n\n");
+    printf("Feito por:\n");
+    printf("- Bruno Ramalho Nascimento\n");
+    printf("- Camila Cristina Silva\n");
+    if(rand()%14 == 4){
+        printf("- Luna Ricieri Marchi\n");
+        Sleep(500);
+        system("cls");
+        printf("Obrigada por usar o programa!!\n");
+        printf("Feito por:\n");
+        printf("- Bruno Ramalho Nascimento\n");
+        printf("- Camila Cristina Silva\n");
+        printf("- Pedro Ricieri Marchi\n");
+    } else {
+        printf("- Pedro Ricieri Marchi\n");
+    }
+    
+    exit(1);   
+} 
+
+void excluir(){
+    fflush(stdin);
+    struct musica music;
+
+    FILE *arquivo = fopen("arq.dat", "r+b" );
+    FILE *temp = fopen("aux.dat", "w" );
+    
+    while(fread(&music, sizeof(music), 1, arquivo)){
+        if(music.status){
+            fwrite(&music, sizeof(music), 1, temp);
+            fflush(stdin);
+        }
+    }
+
+    fclose(temp);
+    fclose(arquivo);
+
+    remove("arq.dat");
+    rename("aux.dat", "arq.dat");
+
+    sair();
+}
+
+void ajuda(){
+    FILE * help = fopen("help_cos.txt", "rt");
+    char caracter;
+    system("cls");
+    
+    while (!feof(help)) {
+        caracter = getc(help);
+        if((caracter >= 65 && caracter <= 90) || (caracter >= 97 && caracter <= 122)){
+            caracter += 4;
+            if(caracter > 90 && caracter < 97){
+                int aux = caracter - 91;
+                caracter = 65 + aux;
+            } else if(caracter > 122){
+                int aux = caracter - 123;
+                caracter = 97 + aux;
+            }
+        }
+        printf ("%c",caracter);
+    }
+    
+    final(help);
+
+    return;
 }
 
 void menu(){
@@ -74,8 +125,7 @@ void menu(){
 
 
     printf("\n\n     (Aperte F1 para ajuda)");
-    printf("\n\n     (Aperte ESC para sair)");
-
+    printf("\n     (Aperte ESC para sair)");
 }
 
 int setinha(){
@@ -90,7 +140,7 @@ int setinha(){
         if(seta<=0){
             seta = getch();
             if(seta == 59){
-                ajuda();
+                return -10;
             }
         }
         switch(seta) {
@@ -135,7 +185,7 @@ int setinha(){
             
             case 27:
                 system("cls");
-                sair();
+                excluir();
                 break;
 
             
@@ -175,8 +225,12 @@ void cadastra(){
                 char resp;
                 printf("\nMusica ja existente porem desativada\n");
                 printf("Deseja reativa-la? (s/n) ");
-                resp = getchar();
-
+                resp = toupper(getchar());
+                while(resp != 'S' && resp != 'N'){
+                    fflush(stdin);
+                    printf("\nValor invalido, tente novamente (s/n):");
+                    resp = toupper(getchar());
+                }
                 if(toupper(resp) == 'S'){                    
                     music_aux.status = TRUE;
                     fseek(arquivo, -sizeof(music_aux), SEEK_CUR);
@@ -214,25 +268,45 @@ void cadastra(){
     printf("\nAlbum: ");
     gets(music.album);
         
-    printf("\nDuracao: ");
-    scanf("%d", &music.tempo);
+    printf("\nDuracao (seg): ");
+    while(!scanf("%d", &music.tempo)){
+        fflush(stdin);
+        printf("\n\nDado Invalido!");
+        printf("\nDuracao (seg): ");
+    }
     
+    music.lancamento.dia = 0;
+    music.lancamento.mes = 0;
+    music.lancamento.ano = 0;
     printf("\nData de Lancamento (dd/mm/aa): ");
-    scanf("%d/%d/%d", &music.lancamento.dia, &music.lancamento.mes, &music.lancamento.ano);
+    while(!scanf("%d/%d/%d", &music.lancamento.dia, &music.lancamento.mes, &music.lancamento.ano)){
+        fflush(stdin);
+        printf("\n\nDado Invalido!");
+        printf("\nData de Lancamento (dd/mm/aa): ");
+        music.lancamento.dia = 0;
+        music.lancamento.mes = 0;
+        music.lancamento.ano = 0;
+    }
 
     fwrite(&music, sizeof(music), 1, arquivo);
     fflush(stdin);
+    fclose(arquivo);
 
     char resp;
     printf("\n\nAdicionar outra musica (s/n)?: ");
-    resp=toupper(getchar());
+    
+    resp = toupper(getchar());
+    while(resp != 'S' && resp != 'N'){
+        fflush(stdin);
+        printf("\nValor invalido, tente novamente (s/n):");
+        resp = toupper(getchar());
+    }
     system("cls");
 
     if(resp == 'S'){
         cadastra();
     }
 
-    fclose(arquivo);
 }
 
 void ver_todas(){
@@ -357,25 +431,6 @@ void consultar(){
     }
 
     final(arquivo);
-}
-
-void excluir(){
-    fflush(stdin);
-    struct musica music;
-
-    FILE *arquivo = fopen("arq.dat", "ab" );
-    FILE *temp = fopen("aux.dat", "w" );
-    
-    while(fread(&music, sizeof(music), 1, arquivo)){
-        if(!music.status==FALSE){
-            fwrite(&music, sizeof(music), 1, temp);
-        }
-    }
-    fclose(temp);
-    fclose(arquivo);
-
-    remove("arq.dat");
-    rename("aux.dat", "arq.dat");
 }
 
 void apagar_musica(){
@@ -505,18 +560,16 @@ int main() {
         
         if(what == 2) {
             cadastra();
-        }
-        else if(what == 3) { 
+        } else if(what == 3) { 
             alterar();
-        }
-        else if(what == 4) { 
+        } else if(what == 4) { 
             apagar_musica();
-        }
-        else if(what == 5) { 
+        } else if(what == 5) { 
             consultar();
-        }
-        else if(what == 6) { 
+        } else if(what == 6) { 
             ver_todas();
+        } else if(what == -10){
+            ajuda();
         }
 
     }
