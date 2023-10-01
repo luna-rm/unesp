@@ -158,7 +158,7 @@ void go(int where, char old_buffer[1024]){
     
     GetLocalTime(&lt);
 
-    printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", lt.wHour, lt.wMinute, lt.wSecond, lt.wDay, lt.wMonth, lt.wYear);
+    printf("%02d:%02d   :)\n", st.wHour, st.wMinute);      
     printf("----------------------------------------------\n\n");
 
     DIR *d;
@@ -268,47 +268,25 @@ void go(int where, char old_buffer[1024]){
         strcat(command, name);
         system(command);        
     } else if(aux == 9){
-        system("cls");
-        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
-        printf("\n\n\n  # qual a nova hora: ");
-        while(!scanf("%d", st.wHour)){
-            printf("\nhora invalida! tente novamente: ");
-        }
-      
-        system("cls");
-        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);      
-        printf("\n\n\n  # qual o novo min: ");
-        while(!scanf("%d", st.wMinute)){
-            printf("\nhora invalida! tente novamente: ");
-        }
+        int new_time;
 
         system("cls");
-        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
-        printf("\n\n\n  # qual o novo seg: ");
-        while(!scanf("%d", st.wSecond)){
+        rand_sleep(100, 200);
+        printf("%02d:%02d   :)\n", st.wHour, st.wMinute);      
+        printf("\n\n  # qual a nova hora: ");
+        while(!scanf("%d", &new_time)){
             printf("\nhora invalida! tente novamente: ");
         }
+        st.wHour = new_time;
 
         system("cls");
-        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
-        printf("\n\n\n  # qual o novo dia: ");
-        while(!scanf("%d", st.wDay)){
+        rand_sleep(100, 200);
+        printf("%02d:%02d   :)\n", st.wHour, st.wMinute);      
+        printf("\n\n  # qual o novo min: ");
+        while(!scanf("%d", &new_time)){
             printf("\nhora invalida! tente novamente: ");
         }
-
-        system("cls");
-        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
-        printf("\n\n\n  # qual o novo mes: ");
-        while(!scanf("%d", st.wMonth)){
-            printf("\nhora invalida! tente novamente: ");
-        }
-
-        system("cls");
-        printf("%02d:%02d:%02d - %02d/%02d/%02d   :)\n", st.wHour, st.wMinute, st.wSecond, st.wDay, st.wMonth, st.wYear);
-        printf("\n\n\n  # qual o novo ano: ");
-        while(!scanf("%d", st.wYear)){
-            printf("\nhora invalida! tente novamente: ");
-        }
+        st.wMinute = new_time;
 
         SetLocalTime(&st);
     } else if(aux == 1){
