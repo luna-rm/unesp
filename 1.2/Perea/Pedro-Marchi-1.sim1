@@ -1,0 +1,87 @@
+<circuit version="1.0.0-SR1" rev="1402" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-1" mainComp="false" Show_id="false" Show_Val="false" Pos="572,492" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-1" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Voltage="5 V" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-2" mainComp="false" Show_id="false" Show_Val="false" Pos="572,516" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-2" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="false" Voltage="5 V" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-3" mainComp="false" Show_id="false" Show_Val="false" Pos="572,540" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-3" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="false" Voltage="5 V" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-4" mainComp="false" Show_id="false" Show_Val="false" Pos="572,564" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-4" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Voltage="5 V" />
+
+<item itemtype="Subcircuit" CircId="74HC85-6" mainComp="false" Show_id="true" Show_Val="false" Pos="712,532" rotation="0" hflip="1" vflip="1" label="74HC85-6" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="true" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-7" mainComp="false" Show_id="false" Show_Val="false" Pos="572,644" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-7" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="false" Voltage="5 V" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-8" mainComp="false" Show_id="false" Show_Val="false" Pos="572,668" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-8" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Voltage="5 V" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-9" mainComp="false" Show_id="false" Show_Val="false" Pos="572,620" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-9" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Voltage="5 V" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-10" mainComp="false" Show_id="false" Show_Val="false" Pos="572,596" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-10" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="false" Voltage="5 V" />
+
+<item itemtype="Ground" CircId="Ground-20" mainComp="false" Show_id="false" Show_Val="false" Pos="892,648" rotation="0" hflip="1" vflip="1" label="Ground-20" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Resistor" CircId="Resistor-21" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="816,544" rotation="0" hflip="1" vflip="1" label="Resistor-21" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-22" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="816,580" rotation="0" hflip="1" vflip="1" label="Resistor-22" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-23" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="816,612" rotation="0" hflip="1" vflip="1" label="Resistor-23" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Led" CircId="Led-27" mainComp="false" Show_id="false" Show_Val="false" Pos="860,544" rotation="0" hflip="1" vflip="1" label="Led-27" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="0.03 A" Resistance="0.6 Ω" />
+
+<item itemtype="Led" CircId="Led-28" mainComp="false" Show_id="false" Show_Val="false" Pos="860,580" rotation="0" hflip="1" vflip="1" label="Led-28" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="0.03 A" Resistance="0.6 Ω" />
+
+<item itemtype="Led" CircId="Led-29" mainComp="false" Show_id="false" Show_Val="false" Pos="860,612" rotation="0" hflip="1" vflip="1" label="Led-29" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="0.03 A" Resistance="0.6 Ω" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-44" mainComp="false" Show_id="false" Show_Val="false" Pos="492,580" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-44" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Voltage="5 V" />
+
+<item itemtype="Node" CircId="Node-34" mainComp="false" Pos="832,544" />
+
+<item itemtype="Node" CircId="Node-39" mainComp="false" Pos="892,580" />
+
+<item itemtype="Node" CircId="Node-42" mainComp="false" Pos="892,612" />
+
+<item itemtype="Connector" uid="connector-11" startpinid="Fixed Voltage-1-outnod" endpinid="74HC85-6-A0" pointList="588,492,680,492,680,540,704,540" />
+
+<item itemtype="Connector" uid="connector-12" startpinid="Fixed Voltage-2-outnod" endpinid="74HC85-6-A1" pointList="588,516,664,516,664,548,704,548" />
+
+<item itemtype="Connector" uid="connector-13" startpinid="Fixed Voltage-3-outnod" endpinid="74HC85-6-A2" pointList="588,540,648,540,648,556,704,556" />
+
+<item itemtype="Connector" uid="connector-14" startpinid="Fixed Voltage-4-outnod" endpinid="74HC85-6-A3" pointList="588,564,704,564" />
+
+<item itemtype="Connector" uid="Connector-15" startpinid="Fixed Voltage-10-outnod" endpinid="74HC85-6-B0" pointList="588,596,704,596" />
+
+<item itemtype="Connector" uid="Connector-17" startpinid="Fixed Voltage-8-outnod" endpinid="74HC85-6-B3" pointList="588,668,680,668,680,620,704,620" />
+
+<item itemtype="Connector" uid="Connector-18" startpinid="Fixed Voltage-7-outnod" endpinid="74HC85-6-B2" pointList="588,644,664,644,664,612,704,612" />
+
+<item itemtype="Connector" uid="Connector-19" startpinid="Fixed Voltage-9-outnod" endpinid="74HC85-6-B1" pointList="588,620,648,620,648,604,704,604" />
+
+<item itemtype="Connector" uid="Connector-24" startpinid="74HC85-6-A&#x3DB" endpinid="Resistor-22-lPin" pointList="768,580,800,580" />
+
+<item itemtype="Connector" uid="Connector-25" startpinid="74HC85-6-A&#x3EB" endpinid="Resistor-23-lPin" pointList="768,596,784,596,784,612,800,612" />
+
+<item itemtype="Connector" uid="Connector-26" startpinid="74HC85-6-A&#x3CB" endpinid="Resistor-21-lPin" pointList="768,564,784,564,784,544,800,544" />
+
+<item itemtype="Connector" uid="Connector-30" startpinid="Resistor-23-rPin" endpinid="Led-29-lPin" pointList="832,612,844,612" />
+
+<item itemtype="Connector" uid="Connector-31" startpinid="Resistor-22-rPin" endpinid="Led-28-lPin" pointList="832,580,844,580" />
+
+<item itemtype="Connector" uid="Connector-32" startpinid="Resistor-21-rPin" endpinid="Node-34-0" pointList="832,544,832,544" />
+
+<item itemtype="Connector" uid="Connector-35" startpinid="Node-34-2" endpinid="Resistor-21-rPin" pointList="832,544,832,544" />
+
+<item itemtype="Connector" uid="Connector-36" startpinid="Node-34-1" endpinid="Led-27-lPin" pointList="832,544,844,544" />
+
+<item itemtype="Connector" uid="Connector-37" startpinid="Led-27-rPin" endpinid="Node-39-0" pointList="876,544,892,544,892,580" />
+
+<item itemtype="Connector" uid="Connector-38" startpinid="Led-28-rPin" endpinid="Node-39-1" pointList="876,580,892,580" />
+
+<item itemtype="Connector" uid="Connector-40" startpinid="Node-39-2" endpinid="Node-42-0" pointList="892,580,892,612" />
+
+<item itemtype="Connector" uid="Connector-41" startpinid="Led-29-rPin" endpinid="Node-42-1" pointList="876,612,892,612" />
+
+<item itemtype="Connector" uid="Connector-43" startpinid="Node-42-2" endpinid="Ground-20-Gnd" pointList="892,612,892,632" />
+
+<item itemtype="Connector" uid="Connector-45" startpinid="Fixed Voltage-44-outnod" endpinid="74HC85-6-IA&#x3DB" pointList="508,580,704,580" />
+
+</circuit>

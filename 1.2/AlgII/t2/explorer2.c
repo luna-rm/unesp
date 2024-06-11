@@ -152,12 +152,10 @@ void start(){
 void go(int where, char old_buffer[1024]){
     system("cls");
 
-    SYSTEMTIME st,lt;
+    SYSTEMTIME st;
 
-    GetSystemTime(&st);
+    GetLocalTime(&st);
     
-    GetLocalTime(&lt);
-
     printf("%02d:%02d   :)\n", st.wHour, st.wMinute);      
     printf("----------------------------------------------\n\n");
 
@@ -252,7 +250,7 @@ void go(int where, char old_buffer[1024]){
         strcpy(command, buffer);
         strcat(command, "\\");
         strcat(command, file);
-        if(rmdir(command) != 0){
+        if(!_rmdir(command)){
             remove(file);
         }     
     } else if(aux == 8){

@@ -23,7 +23,9 @@ string c10to2(string num){
         num_aux += (int)pow(10.0, num.size()-1-i);
     } 
 
-    
+    cout << "aaaa" << num_aux << endl;
+
+    const int AAAAAAAA = 2;
 
     return ansr;
 }

@@ -1,0 +1,34 @@
+1. Uma classe consiste no "formato" de certo objeto, visto que é um conjunto de variáveis e
+funções que ditam como certa coisa se comportará.
+Um exemplo de classe é a do arquivo "Pessoa.java", onde está declarado a classe do tipo pessoa
+com algumas variáveis e métodos.
+A principal diferença da classe com um struct é que a classe pode conter funções e o struct não.
+
+2. Considerando que a classe seja o conceito do todo de algo, a instância de uma classe 
+é uma unidade do conceito.
+ex.: "Pessoa luna = new Pessoa()"
+a variável "luna" armazena uma pessoa do conceito de pessoas
+
+3. Que existe mais de uma versão desse métodos.
+exemplo no arquivo "transporte"
+
+4. Consiste na alteração de um métodos de uma classe pai em uma classe filha,
+mudando o que é executado nela.
+
+5. Em uma variável serve para mostrar que é uma constante,
+em um métodos serve para impedir que ocorra override nela.
+exemplo em variável: "final int TAM_MAX = 1000"
+exemplo em métodos: "public final void print_text(){
+                        System.out.println("text");
+                    }"
+
+6. Arquivo "Pessoa.java"
+
+7. Arquivo "Aluno.java"
+
+8. Arquivo "Mostra.java"
+
+9. Arquivo "Mostra_Abs.java"
+
+10. O java permite funções com o mesmo nome desde que seus parâmetros  sejam diferentes, para que assim
+possa diferenciar
